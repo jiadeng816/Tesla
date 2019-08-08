@@ -2,6 +2,7 @@ from flask import Flask,render_template,request as req,redirect,url_for
 import json
 import urllib
 import urllib.request
+from collections import defaultdict
 
 app = Flask(__name__)
 
@@ -9,27 +10,34 @@ app = Flask(__name__)
 def show():
     return render_template("communication1.html")
 
+def load_data():
+    qa = defaultdict(lambda: "这个问题我不太清楚哎")
+    # qa["你好"] = "你好"
+    with open("data/baike_data.txt", "r", encoding="utf-8") as f:
+        baike_data = json.load(f)
+        for i in range(len(baike_data)):
+            for data in baike_data[i]["data"]:
+                 qa[data["query"]] = data["answer"]
+    with open("data/greeting.txt", "r", encoding="utf-8") as f:
+        baike_data = json.load(f)
+        for i in range(len(baike_data)):
+            for data in baike_data[i]["data"]:
+                 qa[data["query"]] = data["answer"]
+    return qa
+
+
 @app.route('/chat', methods=['GET', 'POST'])
 def index():
     if req.method == 'POST':
         global data
         data = req.form.get("chat")
         print(data)
-    headers = {'Content-Type': 'application/json'}
-    access_token = '24.b9b7753e9bea4da949e3d6ce30a80f3d.2592000.1567755786.282335-16968761'
-    url = 'https://aip.baidubce.com/rpc/2.0/unit/service/chat?access_token=' + access_token
-    post_data = "{\"log_id\":\"UNITTEST_10000\",\"version\":\"2.0\",\"service_id\":\"S18902\",\"session_id\":\"\",\"request\":{\"query\":\""+data+"\",\"user_id\":\"88888\"},\"dialog_state\":{\"contexts\":{\"SYS_REMEMBERED_SKILLS\":[\"60877\"]}}}"
-    print(post_data)
-    request = urllib.request.Request(url, data=post_data.encode('utf-8'), headers=headers)
-    response = urllib.request.urlopen(request)
-    content = response.read().decode("utf-8")
-    if content:
-        a = json.loads(content)
-        b = a["result"]["response_list"][0]["action_list"][0]["say"]
-    context={
-        'response':b,
-    }
-    return json.dumps(context)
+        answer = qa[data]
+        context={
+            'response': answer
+        }
+        return json.dumps(context)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    qa = load_data()
+    app.run(debug=True, host="0.0.0.0", port=5000)
