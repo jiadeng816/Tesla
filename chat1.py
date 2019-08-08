@@ -1,8 +1,11 @@
+# coding:utf-8
 from flask import Flask,render_template,request as req,redirect,url_for
 import json
 import urllib
 import urllib.request
 from collections import defaultdict
+import time, random
+from SimAnswer import SimAnswer
 
 app = Flask(__name__)
 
@@ -10,9 +13,9 @@ app = Flask(__name__)
 def show():
     return render_template("communication1.html")
 
+
 def load_data():
     qa = defaultdict(lambda: "这个问题我不太清楚哎")
-    # qa["你好"] = "你好"
     with open("data/baike_data.txt", "r", encoding="utf-8") as f:
         baike_data = json.load(f)
         for i in range(len(baike_data)):
@@ -31,11 +34,12 @@ def index():
     if req.method == 'POST':
         global data
         data = req.form.get("chat")
-        print(data)
         answer = qa[data]
+        # answer = SimAnswer.findAnswer(data)
         context={
             'response': answer
         }
+        time.sleep(random.randint(1,15)/10)
         return json.dumps(context)
 
 if __name__ == '__main__':
