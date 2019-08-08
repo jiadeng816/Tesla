@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Chat</title>
+<style type="text/css">
+    .talk_con{
+        width:900px;
+        height:500px;
+        border:1px solid #666;
+        margin:50px auto 0;
+        background:#f9f9f9;
+    }
+    .talk_show{
+        width:580px;
+        height:420px;
+        border:1px solid #666;
+        background:#fff;
+        margin:10px auto 0;
+        margin-left:10px;
+        overflow-y: auto;
+    }
+    .user_show{
+        width:280px;
+        height:420px;
+        border:1px solid #666;
+        background:#fff;
+        margin:10px auto 0;
+        margin-right:10px;
+        overflow:auto;
+    }
+    .talk_input{
+        width:580px;
+        margin:10px auto 0;
+        margin-left:10px;
+    }
+    .whotalk{
+        width:80px;
+        height:30px;
+        float:left;
+        outline:none;
+    }
+    .talk_word{
+        width:504px;
+        height:26px;
+        padding:0px;
+        float:left;
+        margin-left:10px;
+        outline:none;
+        text-indent:10px;
+    }
+    .talk_sub{
+        width:56px;
+        height:30px;
+        float:left;
+        margin-left:10px;
+    }
+    .remove_sub{
+        width:56px;
+        height:30px;
+        float:left;
+        margin-left:10px;
+    }
+    .atalk{
+       margin:10px;
+    }
+    .atalk span{
+        display:inline-block;
+        background:#0181cc;
+        border-radius:10px;
+        color:#fff;
+        padding:5px 10px;
+    }
+    .btalk{
+        margin:10px;
+        text-align:right;
+    }
+    .btalk span{
+        display:inline-block;
+        background:#ef8201;
+        border-radius:10px;
+        color:#fff;
+        padding:5px 10px;
+    }
+</style>
+
+<script type="text/javascript" src="static\js\jquery-1.8.2.min.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+//
+    function page(){
+        var div = document.getElementById('words');
+        div.scrollTop = div.scrollHeight;
+    }
+
+    window.onload = function(){
+        var Words = document.getElementById("words");
+        var Who = document.getElementById("who");
+        var TalkWords = document.getElementById("talkwords");
+        var TalkSub = document.getElementById("talksub");
+        var res;
+        TalkSub.onclick = function(){
+            //定义空字符串
+            var str2 = "";
+            if(TalkWords.value == ""){
+                 // 消息为空时弹窗
+                alert("消息不能为空");
+                return;
+            }
+
+            //atalk 需要接后台回复再输出
+             str2 = '<div class="btalk"><span style="position: relative; right: 10px;">' + TalkWords.value +'</span><img border="0" src="static/img/邓嘉.jpg" width = "30" height = "30" style="position: relative;bottom: -8px;" /></div>';
+            Words.innerHTML = Words.innerHTML + str2;
+
+            var str1 = "";
+            //alert(res);
+            var result = liaotian(res);
+            str1 = '<div class="atalk"><img border="0" src="static/img/邓嘉.jpg" width = "30" height = "30" style="position: relative;bottom: -12px;" /><span style="position: relative; right: -12px;">' + result+'</span></div>';
+            Words.innerHTML = Words.innerHTML + str1;
+            page();
+
+
+
+            document.getElementById('talkwords').value='';
+
+        }
+
+    }
+
+	function liaotian(res){
+	    var res;
+		var data = document.getElementById("talkwords").value;
+		$.ajax({
+			type: "post",
+			url: "http://127.0.0.1:5000/chat",
+			data:{"chat":data},
+			dataType: 'json',
+			async:false,
+			success: function(data){
+			    var data_ = data.response;
+			    value = data_;
+			    res = value;
+			}
+		})
+		//alert(res);
+		return res;
+	}
+
+	function sleep(delay) {
+    var start = (new Date()).getTime();
+    while((new Date()).getTime() - start < delay) {
+        continue;
+    }
+
+}
+
+</script>
+</head>
+<body >
+    <div class="talk_con">
+        <div class="talk_show" id="words">
+            <div class="btalk"></div>
+            <div class="atalk"></div>
+        </div>
+        <div class="talk_input">
+            <input type="text" class="talk_word" id="talkwords" >
+            <input type="button" value="发送" class="talk_sub" id="talksub">
+        </div>
+        <div class="user_show" id="users" style="position: relative;bottom: 432px;">
+            <p style="position: relative;right: -12px;">
+                <b>在线用户</b>
+            </p>
+            <hr/>
+            <p>
+            <img border="0" src="static\img\邓嘉.jpg" width = "30" height = "30" style="position: relative;right: -12px;" /><b style="position: relative;right: -14px; bottom: 8px;">邓嘉1</b>
+            </p>
+            <p>
+            <img border="0" src="static\img\邓嘉.jpg" width = "30" height = "30" style="position: relative;right: -12px;" /><b style="position: relative;right: -14px; bottom: 8px;">邓嘉2</b>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
