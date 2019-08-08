@@ -100,6 +100,33 @@
         var TalkWords = document.getElementById("talkwords");
         var TalkSub = document.getElementById("talksub");
         var res;
+
+
+        TalkWords.onkeydown = function(){
+            if(event.keyCode ==13){
+                //定义空字符串
+                var str2 = "";
+                if(TalkWords.value == ""){
+                     // 消息为空时弹窗
+                    alert("消息不能为空");
+                    return;
+                }
+
+                //atalk 需要接后台回复再输出
+                 str2 = '<div class="btalk"><span style="position: relative; right: 10px;">' + TalkWords.value +'</span><img border="0" src="static/img/邓嘉.jpg" width = "30" height = "30" style="position: relative;bottom: -8px;" /></div>';
+                Words.innerHTML = Words.innerHTML + str2;
+
+                var str1 = "";
+                //alert(res);
+                var result = liaotian(res);
+                str1 = '<div class="atalk"><img border="0" src="static/img/邓嘉.jpg" width = "30" height = "30" style="position: relative;bottom: -12px;" /><span style="position: relative; right: -12px;">' + result+'</span></div>';
+                Words.innerHTML = Words.innerHTML + str1;
+                page();
+
+                document.getElementById('talkwords').value='';
+            }
+        }
+
         TalkSub.onclick = function(){
             //定义空字符串
             var str2 = "";
@@ -120,12 +147,8 @@
             Words.innerHTML = Words.innerHTML + str1;
             page();
 
-
-
             document.getElementById('talkwords').value='';
-
         }
-
     }
 
 	function liaotian(res){
