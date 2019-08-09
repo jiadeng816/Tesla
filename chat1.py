@@ -17,12 +17,15 @@ def show():
 @app.route('/chat', methods=['GET', 'POST'])
 def index():
     if req.method == 'POST':
-        global data
+        UNKList = ["这个问题我不知道哎┑(￣Д ￣)┍", "这个我不太懂~", "你的问题太难了/(ㄒoㄒ)/~~", "容我再学习一下", "这可把我问住了…"]
         data = req.form.get("chat")
         answerList = SimAnswer.findAnswer(data)
         print("query: ", data)
         print("answer: ", answerList)
-        answer = answerList[0]["answer"]
+        if answerList[0]["value"] > 0.92:       # 这里的阈值需要测试一下
+            answer = answerList[0]["answer"]
+        else:
+            answer = random.choice(UNKList)
         context={
             'response': answer
         }
