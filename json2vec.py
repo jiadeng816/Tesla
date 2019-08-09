@@ -6,9 +6,15 @@ import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
 
+def load_stopdict():
+    with open("data/dict/stopdict.txt", "r", encoding="utf-8") as f:
+        stop_word_dict = f.readlines()
+    return stop_word_dict
+
 path = "data/embedding/embedding_all_tencent_200.txt"
 model = KeyedVectors.load_word2vec_format(path, binary=False)
 jieba.load_userdict("data/dict/userdict.txt")
+stop_word_dict = load_stopdict()
 
 class Query2Vec():
     def __init__(self, query):
@@ -64,7 +70,7 @@ class Query2Vec():
         count = 0
         for word in query:
             try:
-                weight = 0.5 if word in ["什么", "是"] else 1
+                weight = 0.1 if word in stop_word_dict else 1
                 vec += self.wordVec(word, model, min_n=1, max_n=3) * weight
                 count += 1
             except:

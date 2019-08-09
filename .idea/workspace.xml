@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="de5b7a0c-be9e-4d78-8ab1-dfb5edd1ed8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat1.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimAnswer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimAnswer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/QA_vec.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/QA_vec.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/QA_vec10.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/QA_vec10.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/baike_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/baike_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/carData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/carData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/greeting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/greeting.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2vec.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +39,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\Tesla\data\QA_data" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Project\Tesla\data" />
       <recent name="D:\Project\Tesla" />

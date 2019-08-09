@@ -20,10 +20,11 @@ import numpy as np
 #     return qa
 
 
+
 class SimAnswer:
     @classmethod
     def load_data(cls):
-        with open("data/QA_vec.txt", "r", encoding="utf-8") as f:
+        with open("data/QA_data/QA_vec.txt", "r", encoding="utf-8") as f:
             QA_data = json.load(f)
             QA_list = []
             for i in range(len(QA_data)):
