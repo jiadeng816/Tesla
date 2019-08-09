@@ -70,9 +70,9 @@ class Query2Vec():
         count = 0
         for word in query:
             try:
-                weight = 0.1 if word in stop_word_dict else 1
+                weight = 0.02 if word in stop_word_dict else 1
                 vec += self.wordVec(word, model, min_n=1, max_n=3) * weight
-                count += 1
+                count += weight
             except:
                 continue
         if count != 0:
