@@ -65,7 +65,7 @@ class Query2Vec():
 
 
     def query2vec(self):
-        query = jieba.lcut(self.query)
+        query = jieba.lcut_for_search(self.query)
         vec = np.zeros(200)
         count = 0
         for word in query:

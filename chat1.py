@@ -22,7 +22,7 @@ def index():
         answerList = SimAnswer.findAnswer(data)
         print("query: ", data)
         print("answer: ", answerList)
-        if answerList[0]["value"] > 0.94:       # 这里的阈值需要测试一下
+        if answerList[0]["value"] > 0.92:       # 这里的阈值需要测试一下
             answer = answerList[0]["answer"]
         else:
             answer = random.choice(UNKList)
