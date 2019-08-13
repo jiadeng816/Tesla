@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de5b7a0c-be9e-4d78-8ab1-dfb5edd1ed8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/QA_data/QA_vec.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/QA_vec.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/QA_data/carData.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/QA_data/greeting.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/QA_data/greeting.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat1.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dict/userdict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/dict/userdict.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,18 +25,18 @@
   <component name="ProjectId" id="1P8YWcrYNvRYxJ9rkca3Blved3z" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/QA_data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Project\Tesla\data\QA_data" />
-      <recent name="D:\Project\Tesla\utils" />
-      <recent name="D:\Project\Tesla\data\dict" />
-      <recent name="D:\Project\Tesla\data" />
-      <recent name="D:\Project\Tesla" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Project\Tesla\data\QA_data" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project\Tesla\utils" />
+      <recent name="D:\Project\Tesla\data\dict" />
+      <recent name="D:\Project\Tesla\data\QA_data" />
+      <recent name="D:\Project\Tesla\data" />
+      <recent name="D:\Project\Tesla" />
     </key>
   </component>
   <component name="RunDashboard">
