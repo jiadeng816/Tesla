@@ -9,7 +9,7 @@ from SimAnswer import SimAnswer
 from KBAnswer import KBAnswer
 import jieba
 
-jieba.load_userdict("data/dict/userdict.txt")
+jieba.load_userdict("data/dict/carType.txt")
 with open("data/dict/catType.txt", "r", encoding="utf-8") as f:
     carList = [i.replace("\n", "") for i in f.readlines()]
 priceList = ["价格", "多少钱", "怎么卖"]
