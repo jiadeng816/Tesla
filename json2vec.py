@@ -11,7 +11,7 @@ def load_stopdict():
         stop_word_dict = f.readlines()
     return stop_word_dict
 
-path = "data/embedding/embedding_all_tencent_200.txt"
+path = "data/embedding/embedding_all_fasttext2_300.txt"
 model = KeyedVectors.load_word2vec_format(path, binary=False)
 jieba.load_userdict("data/dict/userdict.txt")
 stop_word_dict = load_stopdict()
@@ -66,11 +66,11 @@ class Query2Vec():
 
     def query2vec(self):
         query = jieba.lcut_for_search(self.query)
-        vec = np.zeros(200)
+        vec = np.zeros(300)
         count = 0
         for word in query:
             try:
-                weight = 0.02 if word in stop_word_dict else 1
+                weight = 0.01 if word in stop_word_dict else 1
                 vec += self.wordVec(word, model, min_n=1, max_n=3) * weight
                 count += weight
             except:
