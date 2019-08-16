@@ -5,14 +5,9 @@ import urllib
 import urllib.request
 from collections import defaultdict
 import time, random
-from SimAnswer import SimAnswer
-from KBAnswer import KBAnswer
-import jieba
+from KBAnswer import KBAnalysis
 
-jieba.load_userdict("data/dict/carType.txt")
-with open("data/dict/catType.txt", "r", encoding="utf-8") as f:
-    carList = [i.replace("\n", "") for i in f.readlines()]
-priceList = ["价格", "多少钱", "怎么卖"]
+
 
 app = Flask(__name__)
 
@@ -37,25 +32,13 @@ def index():
         #     answer = random.choice(UNKList)
 
         # 这里是数据库查询返回的答案
-        flag = 0
-        answer = None
-        car_type = None
-        for query in jieba.cut(data):
-            if query in priceList:
-                flag += 1
-            if query in carList:
-                car_type = query
-                flag += 1
-            if flag == 2:
-                answer = KBAnswer.DBSearch(car_type)
-                break
-        answer = answer if answer else "这个问题我不知道"
+        answer = KBAnalysis.analysis(data) if KBAnalysis.analysis(data) else "这个问题我不知道"
 
         # 拼接答案并输出返回值
         context={
             'response': answer
         }
-        time.sleep(random.randint(1,15)/10)
+        time.sleep(random.randint(1,10)/10)
         return json.dumps(context)
 
 if __name__ == '__main__':
