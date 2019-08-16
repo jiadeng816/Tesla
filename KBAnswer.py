@@ -72,7 +72,6 @@ cur = db.cursor()
 class KBSearch():
     @classmethod
     def answer2string(cls, key, answer):
-        print("key, answer", key, answer)
         if key == "ProductDate":
             return str(int(answer))[:4]+"年"+str(int(answer))[4:6]+"月"
         elif key in measureUnitDict:
@@ -86,7 +85,6 @@ class KBSearch():
             sql = "SELECT CarType,{} FROM cars.car_parameter WHERE CarType LIKE '%{}%'".format(parameter4search, car_type)
             cur.execute(sql)  # 执行sql语句
             results = list(cur.fetchall())  # 获取查询的所有记录
-            print("results",results, type(results[0][1]))
             if not results or None in results[0]:
                 return "没有查到相关数据!"
             else:
@@ -109,8 +107,8 @@ class KBAnalysis():
                 parameterList.append(k)
                 parameter4search = parameter4search + k + ","
         parameter4search = parameter4search[:-1]
-        print("car_type", car_type)
-        print("parameter4search", parameter4search)
-        print("parameterList", parameterList)
+        # print("car_type", car_type)
+        # print("parameter4search", parameter4search)
+        # print("parameterList", parameterList)
         answer = KBSearch.DBSearch(car_type, parameter4search, parameterList)
         return answer
