@@ -1,24 +1,8 @@
 # coding:utf-8
 
-from collections import defaultdict
 import json
 from json2vec import Query2Vec
 import numpy as np
-
-# def load_data():
-#     qa = defaultdict(lambda: "这个问题我不太清楚哎")
-#     with open("data/baike_data.txt", "r", encoding="utf-8") as f:
-#         baike_data = json.load(f)
-#         for i in range(len(baike_data)):
-#             for data in baike_data[i]["data"]:
-#                  qa[data["query"]] = data["answer"]
-#     with open("data/greeting.txt", "r", encoding="utf-8") as f:
-#         baike_data = json.load(f)
-#         for i in range(len(baike_data)):
-#             for data in baike_data[i]["data"]:
-#                  qa[data["query"]] = data["answer"]
-#     return qa
-
 
 
 class SimAnswer:
@@ -59,4 +43,5 @@ class SimAnswer:
 
 
 if __name__ == "__main__":
-    SimAnswer.findAnswer("你好")
+    answer = SimAnswer.findAnswer("什么是珠光漆")
+    print(answer)

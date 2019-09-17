@@ -14,7 +14,7 @@ jieba.load_userdict("../data/dict/userdict.txt")
 
 def load_stopdict(path):
     with open(path, "r", encoding="utf-8") as f:
-        stop_word_dict = f.readlines()
+        stop_word_dict = [line[:-1] for line in f.readlines()]
     return stop_word_dict
 
 
@@ -70,7 +70,7 @@ def query2vec(query):
     count = 0
     for word in query:
         try:
-            weight = 0.01 if word in stop_word_dict else 1
+            weight = 0.1 if word in stop_word_dict else 1
             vec += wordVec(word, model, min_n=1, max_n=3) * weight
             count += weight
         except:

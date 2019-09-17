@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 
 def load_stopdict():
     with open("data/dict/stopdict.txt", "r", encoding="utf-8") as f:
-        stop_word_dict = f.readlines()
+        stop_word_dict = [line[:-1] for line in f.readlines()]
     return stop_word_dict
 
 path = "data/embedding/embedding_all_fasttext2_300.txt"
@@ -70,7 +70,7 @@ class Query2Vec():
         count = 0
         for word in query:
             try:
-                weight = 0.01 if word in stop_word_dict else 1
+                weight = 0.1 if word in stop_word_dict else 1
                 vec += self.wordVec(word, model, min_n=1, max_n=3) * weight
                 count += weight
             except:
